@@ -1,6 +1,6 @@
 package com.example.demo.schedule;
 
-import com.example.demo.service.ExchangeRateService;
+import com.example.demo.service.LifeAppService;
 import com.example.demo.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import java.time.LocalDateTime;
 
-import static com.example.demo.constant.ExchangeRateConstant.EXCHANGE_RATE_KEY;
+import static com.example.demo.constant.LifeAppConstant.EXCHANGE_RATE_KEY;
 
 
 @Configuration
@@ -30,17 +30,17 @@ public class ExchangeRateScheduled {
     private String tcur;
 
     @Autowired
-    private ExchangeRateService exchangeRateService;
+    private LifeAppService lifeAppService;
 
     @Autowired
     private RedisUtil redisUtil;
 
     //3.添加定时任务
-    @Scheduled(cron = "0 0/3 * * * ?")
+    @Scheduled(cron = "0 0 0/1 * * ?")
     private void configureTasks() {
         System.err.println("【汇率同步任务】执行静态定时任务时间: " + LocalDateTime.now());
         try{
-            String data = exchangeRateService.getExchangeData(scur, tcur);
+            String data = lifeAppService.getExchangeData(scur, tcur);
             redisUtil.set(EXCHANGE_RATE_KEY,data);
         }catch (Exception e){
             e.printStackTrace();

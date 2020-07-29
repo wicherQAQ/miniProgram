@@ -1,6 +1,6 @@
 fly:
   now-api:
-    request-url: https://sapi.k780.com/?app=finance.rate
+    request-url: https://sapi.k780.com/?app=
     appkey: 52042
     sign: a2267a9031c080ab9e65d008b06d9976
     scur: USD

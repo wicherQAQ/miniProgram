@@ -3,7 +3,7 @@ package com.example.demo.service;
 /**
  * 调取汇率数据接口
  */
-public interface ExchangeRateService {
+public interface LifeAppService {
 
     /**
      *
@@ -11,4 +11,12 @@ public interface ExchangeRateService {
      * @param tcur
      */
     String getExchangeData(String scur, String tcur);
+
+    /**
+     *
+     * @param postcode
+     * @param areaname
+     * @return
+     */
+    String getPostcode(String postcode,String areaname);
 }
